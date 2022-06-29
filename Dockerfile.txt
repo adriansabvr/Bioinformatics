@@ -45,7 +45,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH \
 
 
 # Copy a script that we will use to correct permissions after running certain commands
-COPY fix-permissions /usr/local/bin/fix-permissions
+COPY ./fix-permissions.sh /usr/local/bin/fix-permissions
 RUN chmod a+rx /usr/local/bin/fix-permissions
 
 # Enable prompt color in the skeleton .bashrc before creating the default NB_USER
@@ -67,7 +67,7 @@ RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
 USER $NB_UID
 WORKDIR $HOME
 # Could be changed to default if needed
-ARG PYTHON_VERSION=3.9
+ARG PYTHON_VERSION=3.7
 
 
 # Setup work directory for backward-compatibility
@@ -104,7 +104,7 @@ RUN cd /tmp && \
 USER root
 
 # Install libraries
-RUN conda install --yes openmm openforcefields && \
+RUN conda install --yes openmm==7.6.0 openforcefields && \
     rm -rf /home/$NB_USER/.cache/yarn && \
     rm -rf /home/$NB_USER/.node-gyp && \
     pip install matplotlib && \
@@ -196,6 +196,8 @@ RUN apt-get update && \
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions /home/$NB_USER
+
+RUN conda install --quiet --yes -c conda-forge -c schrodinger pymol-bundle
 
 
 #################### End Phase #######################
