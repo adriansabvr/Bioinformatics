@@ -104,7 +104,7 @@ RUN cd /tmp && \
 USER root
 
 # Install libraries
-RUN conda install --yes openmm==7.6.0 openforcefields && \
+RUN conda install --yes openmm==7.6.0 openforcefields openmmtools && \
     rm -rf /home/$NB_USER/.cache/yarn && \
     rm -rf /home/$NB_USER/.node-gyp && \
     pip install matplotlib && \
