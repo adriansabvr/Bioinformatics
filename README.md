@@ -22,12 +22,12 @@ https://docs.docker.com/get-docker/
 
 In order to compile the dockerfile, execute the following command:
 ```sh
-docker builld [path] -d [Dockerfile_Name] -t [Container_Name]
+docker build [path] -d [Dockerfile_Name] -t [Container_Name]
 ```
 
 Example
 ```sh
-docker builld . -d Dockerfile.txt -t serv
+docker build . -d Dockerfile.txt -t serv
 ```
 
 ## Execution (Container)
