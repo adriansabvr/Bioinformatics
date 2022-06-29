@@ -77,7 +77,7 @@ There is an image of this dockerfile already compiled in dockerhub, this is the 
 
 To download run the following commands:
 ```sh
-docke pull 
+docker pull 
 ```
 
 
